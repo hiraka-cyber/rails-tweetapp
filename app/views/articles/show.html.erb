@@ -1,0 +1,27 @@
+<p>
+  <img src="<%= @article.img %>" width="100%" height="100%" /> 
+</p>
+
+<p>
+ User:<%= @article.user.username %>
+ Title:<%= @article.title %>
+ Text:<%= @article.text %>
+</p>
+
+
+<div class="form-inline">
+<% if current_user.already_liked?(@article) %>
+  <%= button_to '★', article_like_path(@article), method: :delete,class:'btn btn-danger' %>
+<% else %>
+  <%= button_to '☆', article_likes_path(@article) ,class:'btn btn-outline-danger' %>
+<% end %>
+<h3>:<%= @article.likes.count %></h3>
+</div>
+
+<strong>Comments</strong>
+<%= render @article.comments %>
+
+<strong>Add a comment:</strong>
+<%= render "comments/form" %>
+
+<%= link_to 'Back', articles_path ,class:'btn btn-outline-dark'%> | <%= link_to 'Edit', edit_article_path(@article) ,class:'btn btn-outline-success' %>

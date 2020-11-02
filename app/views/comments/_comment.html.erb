@@ -1,0 +1,8 @@
+<br>
+Commenter:<%= comment.commenter %>
+<br>
+ Comment:<%= comment.body %>
+
+<p>
+ <%= link_to '✖', [comment.article, comment],method: :delete, data:{confirm: 'Are you sure?' }%>
+</p>

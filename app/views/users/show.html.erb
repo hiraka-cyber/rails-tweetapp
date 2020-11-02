@@ -1,0 +1,30 @@
+<div class="row">
+ <div class="col-sm-3">
+ <img src="<%= @user.image %>" width="200px" height="200px" style="border-radius:50%;object-fit:cover;"><br>
+ </div>
+ <div class="col">
+ 
+<p>Profile</p>
+ユーザー名:<%= @user.username %>さん<br>
+メールアドレス:<%= @user.email %><br>
+プロフィール:<%= @user.profile %><br>
+
+<%= render 'follow_form' %>
+<%= render 'stats' %>
+ </div>
+</div>
+<h2>My Article</h2>
+<% @user.articles.each do |article| %>
+  <a href="/articles/<%= article.id %>"><%= article.text %></a>
+  <div class="text-right">
+  <%= link_to 'Edit',edit_article_path(article) ,class:'btn btn-outline-success' %>
+  <%= link_to 'Destroy',article_path(article),method: :delete, data: {confirm: 'Are you sure?'} ,class:'btn btn-outline-danger' %><br>
+  </div>
+<% end %>
+<h3>Good Article</h3>
+<% @user.liked_articles.each do |article| %>
+  <%= article.user.email %>
+  <%= article.text %><br>
+<% end %>
+
+<%= link_to 'UserArchive', users_path %>
